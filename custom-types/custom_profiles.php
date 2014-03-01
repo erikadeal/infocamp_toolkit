@@ -10,18 +10,17 @@ if(!class_exists('custom_profiles'))
 	{
 
     	public function __construct()
-    	{
-    		add_action('admin_init', array(&$this, 'admin_init'));
-    		add_action('admin_menu', array(&$this, 'admin_menu'));
+    	{  
+    		add_action('plugins_loaded', array(&$this, 'plugins_loaded'));
     	} // END public function __construct()
 
-    	public function admin_init()
+    	public function plugins_loaded()
     	{
-    		$this->create_custom_roles();
-    		//add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
+    		$this->create_member_role();
+            $this->create_participant_role();
     	} // END public function init()
 
-    	public function create_custom_roles()
+    	public function create_member_role()
     	{
     		add_role('forum_member', 'Refugee Forum Member', array(
 			    'read' => true, // True allows that capability
@@ -29,18 +28,78 @@ if(!class_exists('custom_profiles'))
 			    'delete_posts' => true,
 			));
 
-			add_role('forum_participant', 'Refugee Forum Participant', array(
-			    'read' => true, // True allows that capability
-			    'edit_posts' => false,
-			    'delete_posts' => false,
-			));
-    	}
+            register_field_group(array (
+                    'id' => 'acf_service-areas',
+                    'title' => 'Service Areas',
+                    'fields' => array (
+                        array (
+                            'key' => 'field_53025fd551115',
+                            'label' => 'Services',
+                            'name' => 'member_services',
+                            'type' => 'checkbox',
+                            'instructions' => 'Please check all that apply.',
+                            'required' => 1,
+                            'choices' => array (
+                                'Multicultural Resources' => 'Multicultural Resources',
+                                'Mental Health Services' => 'Mental Health Services',
+                                'Medical Assistance' => 'Medical Assistance',
+                                'Legal Services' => 'Legal Services',
+                                'Job/Employment Assistance' => 'Job/Employment Assistance',
+                                'Immigration' => 'Immigration',
+                                'Housing Assistance' => 'Housing Assistance',
+                                'Food Bank' => 'Food Bank',
+                                'English Classes' => 'English Classes',
+                                'Education' => 'Education',
+                                'Domestic Violence' => 'Domestic Violence',
+                                'Children\'s Services' => 'Children\'s Services',
+                                '' => '',
+                            ),
+                            'default_value' => '',
+                            'layout' => 'vertical',
+                        ),
+                        array (
+                            'key' => 'field_5302608151116',
+                            'label' => 'Additional Services',
+                            'name' => 'additional_services',
+                            'type' => 'textarea',
+                            'instructions' => 'If the list above does not fully cover your services, please add a sentence or two of specifics below.',
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'maxlength' => '',
+                            'formatting' => 'br',
+                        ),
+                    ),
+                    'location' => array (
+                        array (
+                            array (
+                                'param' => 'ef_user',
+                                'operator' => '==',
+                                'value' => 'forum_member',
+                                'order_no' => 0,
+                                'group_no' => 0,
+                            ),
+                        ),
+                    ),
+                    'options' => array (
+                        'position' => 'normal',
+                        'layout' => 'default',
+                        'hide_on_screen' => array (
+                        ),
+                    ),
+                    'menu_order' => 0,
+                ));
 
-    	/*public function add_meta_boxes()
-    	{
+    	}//END create_member_role
 
-    	}*/
+        public function create_participant_role()
+        {
+            add_role('forum_participant', 'Refugee Forum Participant', array(
+                'read' => true, // True allows that capability
+                'edit_posts' => false,
+                'delete_posts' => false,
+            ));
+        }
 
-	} // END class kcrf_meetings
-} // END if(!class_exists('kcrf_meetings'))
+	} // END class custom_profiles
+} // END if(!class_exists('custom_profiles'))
 ?>

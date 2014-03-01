@@ -14,6 +14,8 @@ if(!class_exists('kcrf_toolkit_plugin'))
     {
         public function __construct()
         {
+            include_once(sprintf("%s/includes/advanced-custom-fields/acf.php", dirname(__FILE__)));
+
             require_once(sprintf("%s/custom-types/kcrf_meetings.php", dirname(__FILE__)));
             $kcrf_meetings = new kcrf_meetings();
 
