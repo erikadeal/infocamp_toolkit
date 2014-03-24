@@ -26,6 +26,8 @@ if(!class_exists('custom_profiles'))
 			    'read' => true, // True allows that capability
 			    'edit_posts' => true,
 			    'delete_posts' => true,
+                'publish_tribe_events' => true,
+                'publish_posts' => true,
 			));
 
             register_field_group(array (
@@ -52,7 +54,6 @@ if(!class_exists('custom_profiles'))
                                 'Education' => 'Education',
                                 'Domestic Violence' => 'Domestic Violence',
                                 'Children\'s Services' => 'Children\'s Services',
-                                '' => '',
                             ),
                             'default_value' => '',
                             'layout' => 'vertical',
@@ -83,6 +84,80 @@ if(!class_exists('custom_profiles'))
                     'options' => array (
                         'position' => 'normal',
                         'layout' => 'default',
+                        'hide_on_screen' => array (
+                        ),
+                    ),
+                    'menu_order' => 0,
+                ));
+
+                register_field_group(array (
+                    'id' => 'acf_member-info',
+                    'title' => 'Member info',
+                    'fields' => array (
+                        array (
+                            'key' => 'field_532c866bbaa90',
+                            'label' => 'Organization Name',
+                            'name' => 'organization_name',
+                            'type' => 'text',
+                            'required' => 1,
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'formatting' => 'html',
+                            'maxlength' => '',
+                        ),
+                        array (
+                            'key' => 'field_532c8653baa8f',
+                            'label' => 'Date Founded',
+                            'name' => 'date_founded',
+                            'type' => 'text',
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'formatting' => 'html',
+                            'maxlength' => '',
+                        ),
+                        array (
+                            'key' => 'field_532c86afbaa91',
+                            'label' => 'Address Line 1',
+                            'name' => 'address_line_1',
+                            'type' => 'text',
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'formatting' => 'html',
+                            'maxlength' => '',
+                        ),
+                        array (
+                            'key' => 'field_532c86b8baa92',
+                            'label' => 'Address Line 2',
+                            'name' => 'address_line_2',
+                            'type' => 'text',
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'formatting' => 'html',
+                            'maxlength' => '',
+                        ),
+                    ),
+                    'location' => array (
+                        array (
+                            array (
+                                'param' => 'ef_user',
+                                'operator' => '==',
+                                'value' => 'forum_member',
+                                'order_no' => 0,
+                                'group_no' => 0,
+                            ),
+                        ),
+                    ),
+                    'options' => array (
+                        'position' => 'acf_after_title',
+                        'layout' => 'no_box',
                         'hide_on_screen' => array (
                         ),
                     ),
