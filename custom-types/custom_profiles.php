@@ -99,7 +99,7 @@ if(!class_exists('custom_profiles'))
                             'label' => 'Organization Name',
                             'name' => 'organization_name',
                             'type' => 'text',
-                            'required' => 1,
+                            'instructions' => 'Enter the organization that you represent or are affiliated with. Leave blank if you participate in the Forum as an individual member.',
                             'default_value' => '',
                             'placeholder' => '',
                             'prepend' => '',
@@ -143,6 +143,30 @@ if(!class_exists('custom_profiles'))
                             'formatting' => 'html',
                             'maxlength' => '',
                         ),
+                        array (
+                            'key' => 'field_53307d344dbbe',
+                            'label' => 'Phone',
+                            'name' => 'phone',
+                            'type' => 'text',
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'formatting' => 'html',
+                            'maxlength' => '',
+                        ),
+                        array (
+                            'key' => 'field_53307f6176f9f',
+                            'label' => 'Primary demographic',
+                            'name' => 'demographic',
+                            'type' => 'text',
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'formatting' => 'html',
+                            'maxlength' => '',
+                        ),
                     ),
                     'location' => array (
                         array (
@@ -172,6 +196,57 @@ if(!class_exists('custom_profiles'))
                 'read' => true, // True allows that capability
                 'edit_posts' => false,
                 'delete_posts' => false,
+            ));
+
+        register_field_group(array (
+                'id' => 'acf_participant-fields',
+                'title' => 'Participant Fields',
+                'fields' => array (
+                    array (
+                        'key' => 'field_53485b11e4a62',
+                        'label' => 'Organization Name',
+                        'name' => 'organization_name',
+                        'type' => 'text',
+                        'instructions' => 'Enter the organization that you represent or are affiliated with. Leave blank if you participate in the Forum as an individual.',
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'formatting' => 'html',
+                        'maxlength' => '',
+                    ),
+                    array (
+                        'key' => 'field_53485b46e4a63',
+                        'label' => 'Phone',
+                        'name' => 'phone',
+                        'type' => 'text',
+                        'instructions' => 'Enter an optional phone number where you can be reached (this will be public)',
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'formatting' => 'html',
+                        'maxlength' => '',
+                    ),
+                ),
+                'location' => array (
+                    array (
+                        array (
+                            'param' => 'ef_user',
+                            'operator' => '==',
+                            'value' => 'forum_participant',
+                            'order_no' => 0,
+                            'group_no' => 0,
+                        ),
+                    ),
+                ),
+                'options' => array (
+                    'position' => 'normal',
+                    'layout' => 'no_box',
+                    'hide_on_screen' => array (
+                    ),
+                ),
+                'menu_order' => 0,
             ));
         }
 
