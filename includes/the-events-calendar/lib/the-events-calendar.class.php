@@ -253,11 +253,6 @@ if ( !class_exists( 'TribeEvents' ) ) {
 			// caching
 			require_once( 'tribe-events-cache.class.php' );
 
-			// App Shop
-			if (!defined("TRIBE_HIDE_UPSELL") || TRIBE_HIDE_UPSELL !== true ){
-				require_once( 'tribe-app-shop.class.php' );
-			}
-
 			// Tickets
 			require_once( 'tickets/tribe-tickets-pro.php' );
 			require_once( 'tickets/tribe-ticket-object.php' );
@@ -410,10 +405,7 @@ if ( !class_exists( 'TribeEvents' ) ) {
 			add_action( 'wp', array( $this, 'issue_noindex_on_404' ), 10, 0 );
 			add_action( 'plugin_row_meta', array( $this, 'addMetaLinks' ), 10, 2 );
 			// organizer and venue
-			if( !defined('TRIBE_HIDE_UPSELL') || !TRIBE_HIDE_UPSELL ) {
-				add_action( 'wp_dashboard_setup', array( $this, 'dashboardWidget' ) );
-				add_action( 'tribe_events_cost_table', array($this, 'maybeShowMetaUpsell'));
-			}
+			
 			// option pages
 			add_action( '_network_admin_menu', array( $this, 'initOptions' ) );
 			add_action( '_admin_menu', array( $this, 'initOptions' ) );

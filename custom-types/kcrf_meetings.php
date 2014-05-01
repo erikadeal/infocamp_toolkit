@@ -34,10 +34,10 @@ if(!class_exists('kcrf_meetings'))
 					'add_new' => __( 'Add New', 'bonestheme' ), /* The add new menu item */
 					'add_new_item' => __( 'Add New Meeting', 'bonestheme' ), /* Add New Display Title */
 					'edit' => __( 'Edit', 'bonestheme' ), /* Edit Dialog */
-					'edit_item' => __( 'Edit Post Types', 'bonestheme' ), /* Edit Display Title */
-					'new_item' => __( 'New Post Type', 'bonestheme' ), /* New Display Title */
-					'view_item' => __( 'View Post Type', 'bonestheme' ), /* View Display Title */
-					'search_items' => __( 'Search Post Type', 'bonestheme' ), /* Search Meetings Type Title */ 
+					'edit_item' => __( 'Edit Meetings', 'bonestheme' ), /* Edit Display Title */
+					'new_item' => __( 'New Meeting', 'bonestheme' ), /* New Display Title */
+					'view_item' => __( 'View Meeting', 'bonestheme' ), /* View Display Title */
+					'search_items' => __( 'Search Meetings', 'bonestheme' ), /* Search Meetings Type Title */ 
 					'not_found' =>  __( 'Nothing found in the Database.', 'bonestheme' ), /* This displays if there are no entries yet */ 
 					'not_found_in_trash' => __( 'Nothing found in Trash', 'bonestheme' ), /* This displays if there is nothing in the trash */
 					'parent_item_colon' => ''
@@ -52,7 +52,6 @@ if(!class_exists('kcrf_meetings'))
 					'menu-icon' => 'dashicons-editor-ul',
 					'rewrite'	=> array( 'slug' => 'meetings', 'with_front' => false ),
 					'has_archive' => 'meetings', /* you can rename the slug here */
-					'capability_type' => 'post',
 					'hierarchical' => false,
 					/* the next one is important, it tells what's enabled in the post editor */
 					'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'Meetings-fields', 'comments', 'revisions', 'sticky')
