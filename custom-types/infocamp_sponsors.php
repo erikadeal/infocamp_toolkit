@@ -57,49 +57,73 @@ if(!class_exists('infocamp_sponsors'))
 					'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'Sponsors-fields', 'comments', 'revisions', 'sticky')
 				) /* end of options */
 			); /* end of register post type */
-
-			register_taxonomy( 'sponsor-categories', 
-				array('sponsors'), /* if you change the name of register_post_type( 'Sponsors_type', then you have to change this */
-				array('hierarchical' => true,     /* if this is true, it acts like categories */
-					'labels' => array(
-						'name' => __( 'Sponsors Categories', 'bonestheme' ), /* name of the Sponsors taxonomy */
-						'singular_name' => __( 'Sponsors Category', 'bonestheme' ), /* single taxonomy name */
-						'search_items' =>  __( 'Search Sponsors Categories', 'bonestheme' ), /* search title for taxomony */
-						'all_items' => __( 'All Sponsors Categories', 'bonestheme' ), /* all title for taxonomies */
-						'parent_item' => __( 'Parent Sponsors Category', 'bonestheme' ), /* parent title for taxonomy */
-						'parent_item_colon' => __( 'Parent Sponsors Category:', 'bonestheme' ), /* parent taxonomy title */
-						'edit_item' => __( 'Edit Sponsors Category', 'bonestheme' ), /* edit Sponsors taxonomy title */
-						'update_item' => __( 'Update Sponsors Category', 'bonestheme' ), /* update title for taxonomy */
-						'add_new_item' => __( 'Add New Sponsors Category', 'bonestheme' ), /* add new title for taxonomy */
-						'new_item_name' => __( 'New Sponsors Category Name', 'bonestheme' ) /* name title for taxonomy */
+	
+		/* Register custom meta */
+		if(function_exists("register_field_group"))
+		{
+			register_field_group(array (
+				'id' => 'acf_sponsor-information',
+				'title' => 'Sponsor Information',
+				'fields' => array (
+					array (
+						'key' => 'field_538e7b15ec009',
+						'label' => 'Sponsorship Level',
+						'name' => 'sponsorship_level',
+						'type' => 'select',
+						'choices' => array (
+							'Gold' => 'Gold',
+							'Silver' => 'Silver',
+							'Bronze' => 'Bronze',
+							'Grassroots' => 'Grassroots',
+						),
+						'default_value' => '',
+						'allow_null' => 0,
+						'multiple' => 0,
 					),
-					'show_admin_column' => true, 
-					'show_ui' => true,
-					'query_var' => true,
-					'rewrite' => array( 'slug' => 'sponsors-cat' ),
-				)
-			);
-
-			register_taxonomy( 'sponsors_tag', 
-				array('sponsors'), /* if you change the name of register_post_type( 'Sponsors_type', then you have to change this */
-				array('hierarchical' => false,    /* if this is false, it acts like tags */
-					'labels' => array(
-						'name' => __( 'Sponsors Tags', 'bonestheme' ), /* name of the Sponsors taxonomy */
-						'singular_name' => __( 'Sponsors Tag', 'bonestheme' ), /* single taxonomy name */
-						'search_items' =>  __( 'Search Sponsors Tags', 'bonestheme' ), /* search title for taxomony */
-						'all_items' => __( 'All Sponsors Tags', 'bonestheme' ), /* all title for taxonomies */
-						'parent_item' => __( 'Parent Sponsors Tag', 'bonestheme' ), /* parent title for taxonomy */
-						'parent_item_colon' => __( 'Parent Sponsors Tag:', 'bonestheme' ), /* parent taxonomy title */
-						'edit_item' => __( 'Edit Sponsors Tag', 'bonestheme' ), /* edit Sponsors taxonomy title */
-						'update_item' => __( 'Update Sponsors Tag', 'bonestheme' ), /* update title for taxonomy */
-						'add_new_item' => __( 'Add New Sponsors Tag', 'bonestheme' ), /* add new title for taxonomy */
-						'new_item_name' => __( 'New Sponsors Tag Name', 'bonestheme' ) /* name title for taxonomy */
+					array (
+						'key' => 'field_538e7b4eec00a',
+						'label' => 'Sponsor Logo',
+						'name' => 'sponsor_logo',
+						'type' => 'image',
+						'save_format' => 'url',
+						'preview_size' => 'thumbnail',
+						'library' => 'all',
 					),
-					'show_admin_column' => true,
-					'show_ui' => true,
-					'query_var' => true,
-				)
-			);
+					array (
+						'key' => 'field_538f4a92bfabc',
+						'label' => 'Donation Total',
+						'name' => 'donation_total',
+						'type' => 'text',
+						'default_value' => '',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+						'formatting' => 'html',
+						'maxlength' => '',
+					),
+				),
+				'location' => array (
+					array (
+						array (
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'sponsors',
+							'order_no' => 0,
+							'group_no' => 0,
+						),
+					),
+				),
+				'options' => array (
+					'position' => 'acf_after_title',
+					'layout' => 'default',
+					'hide_on_screen' => array (
+					),
+				),
+				'menu_order' => 0,
+			));
+		}
+
+
 		}
 
     	public function save_post($post_id)
