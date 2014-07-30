@@ -149,6 +149,11 @@ if(!class_exists('infocamp_sponsors'))
     		} // if($_POST['post_type'] == self::POST_TYPE && current_user_can('edit_post', $post_id))
     	} // END public function save_post($post_id)
 
+    	public function custom_admin()
+    	{
+    		
+    	}
+
 	} // END class infocamp_sponsors
 } // END if(!class_exists('infocamp_sponsors'))
 
